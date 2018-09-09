@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from "google-maps-react";
+import { constants } from "./constants";
 
 export class MapContainer extends Component {
   constructor(props) {
@@ -26,25 +27,23 @@ export class MapContainer extends Component {
     }
 
     return (
-      
-    <Map google={this.props.google} zoom={14}>
+        <Map google={this.props.google} zoom={14}>
 
-      <Marker onClick={this.onMarkerClick}
-              name={'Current location'} />
+          <Marker onClick={this.onMarkerClick}
+                  name={'Current location'} />
 
-       <InfoWindow
-            marker={this.state.activeMarker}
-            visible={this.state.showingInfoWindow}
-          >
-          <div>
-            <h1>{this.state.selectedPlace.name}</h1>
-          </div>
-        </InfoWindow>
-    </Map>
-
+          <InfoWindow
+                marker={this.state.activeMarker}
+                visible={this.state.showingInfoWindow}
+              >
+              <div>
+                <h1>{this.state.selectedPlace.name}</h1>
+              </div>
+            </InfoWindow>
+        </Map>
     );
   }
 }
 export default GoogleApiWrapper({
-  apiKey: `AIzaSyDq6w8VWwqVWfiWYh7G6HjV-PEMbAnut2k`,
+  apiKey: constants.googleKey,
 })(MapContainer);

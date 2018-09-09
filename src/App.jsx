@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import './App.css';
-import MapContainer  from './map/MapContainer';
+import { FilterSidebar } from './map/FilterSidebar';
+import MapContainer from './map/MapContainer';
 
 class App extends Component {
   render() {
     return (
-      <MapContainer/>
+      <main className="app">
+        <FilterSidebar/>
+        <MapContainer/>
+      </main>
     );
   }
 }

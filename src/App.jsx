@@ -10,6 +10,7 @@ class App extends Component {
     super(props)
     this.state = {
       places: [...constants.places],
+      isSidebarVisible: true
     };
   }
 
@@ -20,6 +21,13 @@ class App extends Component {
         : [...constants.places]
     });
   };
+  
+  onSidebarToggled = (isVisible) => {
+    this.setState({
+      ...this.state,
+      isSidebarVisible: isVisible
+    });
+  }
 
   getFilteredPlaces = (typedPlace) => 
     this.state.places
@@ -37,8 +45,11 @@ class App extends Component {
         <SearchSidebar
           places={this.state.places}
           onTypedPlaceChanged={this.onTypedPlaceChanged}
+          onSidebarToggled={this.onSidebarToggled}
         />
-        <MapContainer places={this.state.places} />
+        <div className={"map " + (this.state.isSidebarVisible ? 'mleft' : '') }>
+          <MapContainer places={this.state.places} />
+        </div>
       </main>
     );
   }

@@ -1,4 +1,6 @@
-* { border: 1px solid goldenrod; }
+* { 
+  /* border: 1px solid goldenrod;  */
+}
 
 .app {
   display: flex;
@@ -6,9 +8,21 @@
 
 .sidebar {
   display: flex;
+  position: absolute;
+  z-index: 1;
   flex-direction: column;
   padding: 10px;
   color: gray;
+  transform: translateX(-100%);
+  width: 300px;
+}
+
+.sidebar__container {
+  position: relative;
+}
+
+.sidebar--visible {
+  transform: inherit;
 }
 
 .filter {
@@ -18,10 +32,19 @@
 
 .search {
   display: flex;
+  position: relative;
 }
 
-.search--input{
+.search--input {
   flex-grow: 1;
+}
+
+.search__btn--expand {
+  position: absolute;
+  height: 40px;
+  left: 103%;
+  z-index: 1;
+  cursor: pointer;
 }
 
 .app > div {
@@ -33,4 +56,8 @@
 ul {
   list-style: none;
   padding: 0;
+}
+
+.mleft {
+  margin-left: 320px;
 }

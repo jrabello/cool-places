@@ -8,9 +8,9 @@
 
 .sidebar {
   display: flex;
+  flex-direction: column;
   position: absolute;
   z-index: 1;
-  flex-direction: column;
   padding: 10px;
   color: gray;
   transform: translateX(-100%);
@@ -25,9 +25,35 @@
   transform: inherit;
 }
 
+.sidebar--hidden {
+  transform: translateX(-100%) !important;
+}
+
 .filter {
   width: 20px;
   margin-left: 5px;
+}
+
+.menu {
+  color: grey;
+  width: 16px;
+}
+
+.close--btn {
+  cursor: pointer;
+  position: absolute;
+  top: -15px;
+  right: -12px;
+  z-index: 1;
+  padding: 10px;
+  border: none;
+  outline: none;
+  background-color: unset;
+}
+
+.close--icon {
+  color: grey;
+  width: 16px;
 }
 
 .search {
@@ -39,15 +65,21 @@
   flex-grow: 1;
 }
 
-.search__btn--expand {
+.search--result {
+  cursor: pointer;
+  margin-bottom: 5px;
+}
+
+.sidebar__btn--expand {
   position: absolute;
-  height: 40px;
   left: 103%;
   z-index: 1;
   cursor: pointer;
+  height: 40px;
+  padding: 4px;
 }
 
-.app > div {
+.map {
   position: relative;
   height: 100vh;
   flex-grow: 1;
@@ -60,4 +92,12 @@ ul {
 
 .mleft {
   margin-left: 320px;
+}
+
+.no-mleft {
+  margin-left: 0 !important;
+}
+
+.hidden {
+  display: none;
 }

@@ -2,6 +2,7 @@ export const constants = {
   googleKey: `AIzaSyDq6w8VWwqVWfiWYh7G6HjV-PEMbAnut2k`,
   places: [
     {
+      id: 0,
       name: `Hotel Henry`,
       location: {
         lat: 44.502463,
@@ -9,6 +10,7 @@ export const constants = {
       }
     },
     {
+      id: 1,
       name: `Le Médiéval`,
       location: {
         lat: 44.503854,
@@ -16,6 +18,7 @@ export const constants = {
       }
     },
     {
+      id: 2,
       name: `L'Astrolabe`,
       location: {
         lat: 44.502928,
@@ -23,6 +26,7 @@ export const constants = {
       }
     },
     {
+      id: 3,
       name: `Middle School D'olt`,
       location: {
         lat: 44.504554,
@@ -30,6 +34,7 @@ export const constants = {
       }
     },
     {
+      id: 4,
       name: `Winery Pages Christophe`,
       location: {
         lat: 44.487294,
@@ -37,6 +42,7 @@ export const constants = {
       }
     },
     {
+      id: 5,
       name: `Château du Cayrou`,
       location: {
         lat: 44.480564,

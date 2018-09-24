@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { constants } from "./constants";
-import { Map, InfoWindow, Marker, GoogleApiWrapper } from "google-maps-react";
+// import { Map, InfoWindow, Marker, GoogleApiWrapper } from "google-maps-react";
+import { GoogleMap, Marker } from "react-google-maps"
 
 export class MapContainer extends Component {
   
@@ -14,25 +15,9 @@ export class MapContainer extends Component {
     };
   }
 
-  componentWillReceiveProps(nextProps) {
-    // this.setState({ data: nextProps.data });
-    if(
-      nextProps.clickedPlace 
-      && this.props.clickedPlace 
-      && this.props.clickedPlace.id !== nextProps.clickedPlace.id
-    ) {
-      const {marker, props }= this.state.markerRefs[this.props.clickedPlace.id]
-      if(marker){
-        debugger
-        this.onMarkerClick(props, marker)
-      }
-    }
-    console.log(`componentWillReceiveProps: `, nextProps);
-  }
-
   onMarkerClick = (props, marker) => {
-    console.log(`onMarkerClick: `, marker );
-    console.log(`onMarkerClick: `, props);
+    console.log(`onMarkerClick marker: `, marker );
+    console.log(`onMarkerClick props: `, props);
     this.setState({
       ...this.state,
       selectedPlace: props,
@@ -47,40 +32,41 @@ export class MapContainer extends Component {
     }
 
     return (
-        <Map 
-          google={this.props.google} 
-          zoom={14} 
-          initialCenter={{
-            lat: `44.5024643`,
-            lng: `1.1375074`
-          }}>
-          {
-            this.props.places
-            .map((place, i) => {
-                return (
-                  // ref={marker => {
-                  //   if(marker)
-                  //     this.state.markerRefs[place.id] = {marker, props: marker.props}
-                  // }}
-                    <Marker 
-                      key={i}
-                      onClick={this.onMarkerClick}
-                      name={place.name} 
-                      position={{lat: place.location.lat, lng: place.location.lng}} />
-                )
-            })
-          }
-          <InfoWindow
-            marker={this.state.activeMarker}
-            visible={this.state.showingInfoWindow}>
-              <div>
-                <h1>{this.state.selectedPlace.name}</h1>
-              </div>
-            </InfoWindow>
-        </Map>
+      <div></div>
+        // <Map 
+        //   google={this.props.google} 
+        //   zoom={14} 
+        //   initialCenter={{
+        //     lat: `44.5024643`,
+        //     lng: `1.1375074`
+        //   }}>
+        //   {
+        //     this.props.places
+        //     .map((place, i) => {
+        //         return (
+        //           // ref={marker => {
+        //           //   if(marker)
+        //           //     this.state.markerRefs[place.id] = {marker, props: marker.props}
+        //           // }}
+        //           <Marker 
+        //             key={i}
+        //             onClick={this.onMarkerClick}
+        //             name={place.name} 
+        //             position={{lat: place.location.lat, lng: place.location.lng}} />
+        //         )
+        //     })
+        //   }
+        //   {/* marker={this.state.activeMarker} */}
+        //   <InfoWindow
+        //     visible={this.state.showingInfoWindow}>
+        //       <div>
+        //         <h1>{this.state.selectedPlace.name}</h1>
+        //       </div>
+        //     </InfoWindow>
+        // </Map>
     );
   }
 }
-export default GoogleApiWrapper({
-  apiKey: constants.googleKey,
-})(MapContainer);
+// export default GoogleApiWrapper({
+//   apiKey: constants.googleKey,
+// })(MapContainer);

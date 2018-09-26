@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import "./App.css";
-import {MapContainer }from "./map/MapContainer";
 import { SearchSidebar } from "./map/SearchSidebar";
 import { constants } from "./map/constants";
-import {MapComponent} from './map/MapComponent'
+import { MapComponent } from './map/MapComponent'
 class App extends Component {
 
   constructor(props) {
@@ -58,13 +57,7 @@ class App extends Component {
           onTypedPlaceChanged={this.onTypedPlaceChanged}
           onSidebarToggled={this.onSidebarToggled}
           onPlaceClicked={this.onPlaceClicked}/>
-
-        <div className={"map " + (this.state.isSidebarVisible ? 'mleft' : 'no-mleft') }>
-          <MapContainer 
-            places={this.state.places}
-            clickedPlace={this.state.clickedPlace} />
-        </div>
-        <MapComponent></MapComponent>
+        <MapComponent/>
       </main>
     );
   }

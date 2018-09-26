@@ -9,12 +9,14 @@
 .sidebar {
   display: flex;
   flex-direction: column;
-  position: absolute;
+  position: fixed;
   z-index: 1;
+  height: 100%;
+  width: 300px;
   padding: 10px;
   color: gray;
+  background-color: white;
   transform: translateX(-100%);
-  width: 300px;
 }
 
 .sidebar__container {
@@ -77,6 +79,8 @@
   cursor: pointer;
   height: 40px;
   padding: 4px;
+  background: rgba(255,255,255,0.9) url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAUCAQAAAAXDMSnAAAAi0lEQ…ueTldC08kcT5YOY9xYujqQM03XKXuaLmEtNF1e1Nz89gbL+0do6OEwRwAAAABJRU5ErkJggg==) 
+  7px center/7px 10px no-repeat;
 }
 
 .map {

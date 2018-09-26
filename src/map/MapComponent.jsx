@@ -1,6 +1,12 @@
 import React from "react"
 import { compose, withProps } from "recompose"
-import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps"
+import { 
+  withScriptjs, 
+  withGoogleMap, 
+  GoogleMap, 
+  Marker, 
+  InfoWindow 
+} from "react-google-maps"
 import { constants } from "./constants";
 
 const MyMapComponent = compose(
@@ -30,11 +36,17 @@ const MyMapComponent = compose(
             <Marker 
               key={i}
               onClick={this.onMarkerClick}
-              name={place.name} 
-              position={{lat: place.location.lat, lng: place.location.lng}} />
+              position={{lat: place.location.lat, lng: place.location.lng}} 
+            >
+              {i===0 && 
+              <InfoWindow onCloseClick={props.onToggleOpen}>
+                <h1>lol</h1>
+              </InfoWindow>}
+            </Marker>
           )
       })
     }
+ 
   </GoogleMap>
 )
 
@@ -68,3 +80,4 @@ export class MapComponent extends React.PureComponent {
     )
   }
 }
+

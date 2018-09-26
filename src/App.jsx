@@ -57,7 +57,7 @@ class App extends Component {
           onTypedPlaceChanged={this.onTypedPlaceChanged}
           onSidebarToggled={this.onSidebarToggled}
           onPlaceClicked={this.onPlaceClicked}/>
-        <MapComponent/>
+        <MapComponent places={this.state.places}/>
       </main>
     );
   }

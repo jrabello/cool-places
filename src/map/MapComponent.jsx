@@ -1,4 +1,6 @@
 import React from "react"
+import './MapComponent.css'
+
 import { compose, withProps } from "recompose"
 import { 
   withScriptjs, 
@@ -46,7 +48,6 @@ const MyMapComponent = compose(
           )
       })
     }
- 
   </GoogleMap>
 )
 

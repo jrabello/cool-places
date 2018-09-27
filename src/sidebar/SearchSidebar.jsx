@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import './SearchSidebar.css'
 
 export class SearchSidebar extends Component {
 
@@ -21,14 +21,15 @@ export class SearchSidebar extends Component {
             this.props.isSidebarVisible ? 'sidebar--visible' : 'sidebar--hidden')} >
             <div className="sidebar__container">
 
-                <button className="close--btn" onClick={event => this.toggleVisibility()}>
+                {/* close btn */}
+                <button className="btn--close" onClick={event => this.toggleVisibility()}>
                     <svg aria-hidden="true" data-prefix="fas" data-icon="times" 
                         className="svg-inline--fa fa-times fa-w-11 close--icon" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 512"><path fill="currentColor" d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"></path></svg>
                 </button>
 
                 <h1>Puy-l'Eveque Locations</h1>
                 <div className="search">
-
+                    {/* expand sidebar */}
                     <button 
                         className={"sidebar__btn--expand " + 
                             (this.props.isSidebarVisible ? `hidden` : ``)} 
@@ -37,22 +38,23 @@ export class SearchSidebar extends Component {
                             <svg aria-hidden="true" data-prefix="fas" 
                                 data-icon="bars" 
                                 className="menu svg-inline--fa fa-bars fa-w-14" 
-                                role="img" xmlns="http://www.w3.org/2000/svg" 
+                                role="img" 
                                 viewBox="0 0 448 512">
                                 <path fill="currentColor" d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"></path></svg>
                         </i>
                     </button>
                     
                     <input 
-                        type="text"
                         className="search--input" 
+                        type="text"
                         onChange={event => this.onTypedPlaceChanged(event.target.value)}/>
 
+                    {/* filter icon */}
                     <i className="filter">
                         <svg aria-hidden="true" 
                             data-prefix="fas" 
                             data-icon="filter" 
-                            role="img" xmlns="http://www.w3.org/2000/svg" 
+                            role="img" 
                             viewBox="0 0 512 512">
                                 <path fill="currentColor" d="M487.976 0H24.028C2.71 0-8.047 25.866 7.058 40.971L192 225.941V432c0 7.831 3.821 15.17 10.237 19.662l80 55.98C298.02 518.69 320 507.493 320 487.98V225.941l184.947-184.97C520.021 25.896 509.338 0 487.976 0z"></path>
                         </svg>

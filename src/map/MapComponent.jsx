@@ -40,8 +40,9 @@ const MyMapComponent = compose(
               onClick={this.onMarkerClick}
               position={{lat: place.location.lat, lng: place.location.lng}} 
             >
-              {i===0 && 
-              <InfoWindow onCloseClick={props.onToggleOpen}>
+              {props.clickedPlace 
+              && props.clickedPlace.id === place.id 
+              && <InfoWindow onCloseClick={props.onToggleOpen}>
                 <h1>lol</h1>
               </InfoWindow>}
             </Marker>
@@ -75,6 +76,7 @@ export class MapComponent extends React.PureComponent {
     return (
       <MyMapComponent
         places={this.props.places}
+        clickedPlace={this.props.clickedPlace}
         isMarkerShown={this.state.isMarkerShown}
         onMarkerClick={this.handleMarkerClick}
       />

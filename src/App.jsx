@@ -9,37 +9,38 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      places: [...constants.places],
+      places: [...this.getAllPlaces()],
       isSidebarVisible: false,
       clickedPlace: undefined,
     };
   }
 
-  getFilteredPlaces = (typedPlace) => 
-    this.state.places
-    .filter(place => 
-        this.matchesPlace(place, typedPlace))
+  getAllPlaces = () => constants.places;
 
-  matchesPlace = (place, typedPlace) => place.name
-    .toLocaleLowerCase()
-    .includes(
-      typedPlace.toLocaleLowerCase())
+  getFilteredPlaces = (typedPlace) => {
+    const matchesPlace = (place, typedPlace) => place.name
+      .toLocaleLowerCase()
+      .includes(
+        typedPlace.toLocaleLowerCase())
+
+    return this.getAllPlaces()
+      .filter(place => matchesPlace(place, typedPlace))
+  }
 
   onTypedPlaceChanged = typedPlace => {
     this.setState({
       ...this.state,
       places: typedPlace.length 
         ? this.getFilteredPlaces(typedPlace) 
-        : [...constants.places]
+        : [...this.getAllPlaces()]
     });
-  };
+  }
 
   onPlaceClicked = (place) => {
     this.setState({
       ...this.state,
       clickedPlace: place
     });
-    console.log(`onPlaceClicked!!!`, place);
   }
 
   onSidebarToggled = () => {
@@ -58,7 +59,10 @@ class App extends Component {
           onTypedPlaceChanged={this.onTypedPlaceChanged}
           onSidebarToggled={this.onSidebarToggled}
           onPlaceClicked={this.onPlaceClicked}/>
-        <MapComponent places={this.state.places}/>
+
+        <MapComponent 
+          places={this.state.places}
+          clickedPlace={this.state.clickedPlace}/>
       </main>
     );
   }

@@ -62,7 +62,8 @@ class App extends Component {
 
         <MapComponent 
           places={this.state.places}
-          clickedPlace={this.state.clickedPlace}/>
+          clickedPlace={this.state.clickedPlace}
+          onPlaceClicked={this.onPlaceClicked}/>
       </main>
     );
   }

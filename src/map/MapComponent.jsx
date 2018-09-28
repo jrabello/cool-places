@@ -34,16 +34,18 @@ const MyMapComponent = compose(
       props.isMarkerShown
       && props.places
       .map((place, i) => {
+        console.log(props);
+        
           return (
             <Marker 
               key={i}
-              onClick={this.onMarkerClick}
+              onClick={event => props.handleMarkerClick(place)}
               position={{lat: place.location.lat, lng: place.location.lng}} 
             >
               {props.clickedPlace 
               && props.clickedPlace.id === place.id 
               && <InfoWindow onCloseClick={props.onToggleOpen}>
-                <h1>lol</h1>
+                <h1>{place.name}</h1>
               </InfoWindow>}
             </Marker>
           )
@@ -64,12 +66,13 @@ export class MapComponent extends React.PureComponent {
   delayedShowMarker = () => {
     setTimeout(() => {
       this.setState({ isMarkerShown: true })
-    }, 3000)
+    }, 300)
   }
 
-  handleMarkerClick = () => {
-    this.setState({ isMarkerShown: false })
-    this.delayedShowMarker()
+  handleMarkerClick = (place) => {
+    // this.setState({ isMarkerShown: true })
+    console.log(this.props);
+    this.props.onPlaceClicked(place)
   }
 
   render() {
@@ -78,7 +81,7 @@ export class MapComponent extends React.PureComponent {
         places={this.props.places}
         clickedPlace={this.props.clickedPlace}
         isMarkerShown={this.state.isMarkerShown}
-        onMarkerClick={this.handleMarkerClick}
+        handleMarkerClick={this.handleMarkerClick}
       />
     )
   }

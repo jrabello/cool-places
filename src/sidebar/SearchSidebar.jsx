@@ -4,7 +4,6 @@ import './SearchSidebar.css'
 export class SearchSidebar extends Component {
 
     onTypedPlaceChanged = (typedPlace) => {
-        console.log(`onTypedPlaceChanged`);
         this.props.onTypedPlaceChanged(typedPlace);
     }
     

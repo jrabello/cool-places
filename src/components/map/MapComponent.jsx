@@ -6,10 +6,9 @@ import {
   withScriptjs, 
   withGoogleMap, 
   GoogleMap, 
-  Marker, 
-  InfoWindow 
 } from "react-google-maps"
-import { constants } from "./constants";
+import { constants } from "../../constants";
+import { MarkerComponent } from "./MarkerComponent";
 
 const MyMapComponent = compose(
   withProps({
@@ -35,17 +34,12 @@ const MyMapComponent = compose(
       && props.places
       .map((place, i) => {
           return (
-            <Marker 
-              key={i}
-              onClick={event => props.handleMarkerClick(place)}
-              position={{lat: place.location.lat, lng: place.location.lng}} 
-            >
-              {props.clickedPlace 
-               && props.clickedPlace.id === place.id 
-               && <InfoWindow onCloseClick={props.onToggleOpen}>
-                    <h1>{place.name}</h1>
-                  </InfoWindow>}
-            </Marker>
+           <MarkerComponent 
+            key={i}
+            place={place}
+            clickedPlace={props.clickedPlace}
+            onMarkerClick={props.onMarkerClick}
+            />
           )
       })
     }
@@ -67,7 +61,7 @@ export class MapComponent extends React.PureComponent {
     }, 300)
   }
 
-  handleMarkerClick = (place) => {
+  onMarkerClick = (place) => {
     this.props.onPlaceClicked(place)
   }
 
@@ -77,7 +71,7 @@ export class MapComponent extends React.PureComponent {
         places={this.props.places}
         clickedPlace={this.props.clickedPlace}
         isMarkerShown={this.state.isMarkerShown}
-        handleMarkerClick={this.handleMarkerClick}
+        onMarkerClick={this.onMarkerClick}
       />
     )
   }

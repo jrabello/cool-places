@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import "./App.css";
-import { SearchSidebar } from "./sidebar/SearchSidebar";
-import { constants } from "./map/constants";
-import { MapComponent } from './map/MapComponent'
+import { MapComponent } from "./components/map/MapComponent";
+import { constants } from "./constants";
+import { SearchSidebar } from "./components/sidebar/SearchSidebar";
 
 class App extends Component {
 

@@ -1,9 +1,11 @@
 export const constants = {
   googleKey: `AIzaSyBUlFWRKSG9rv6jiIcCDCgKSPLJXXY8XmE`,
   foursquare: {
+    url: `https://api.foursquare.com/v2/venues/`,
+    version: `20180101`,
     key: {
       clientId: `LNVNQW4KFLQM4FBNZI0Q5TS0R4UXJNGOWEJ44K5T0K1OK4FV`,
-      clientSecret: `BSSGA50JULKW3BLFXL20PVKK4HFMXTGIWP3W45IKNXHMSJ4H` 
+      clientSecret: `JOR1YGTAJDOVGA4KA0IRRL0WKSINFIMUDM2XDJ2O3ZBH50TA` 
     }
   },
   places: [

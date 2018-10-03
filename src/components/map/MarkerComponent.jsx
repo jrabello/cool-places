@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { FourSquareService } from "../../services/Foursquare";
 import { Marker, InfoWindow } from "react-google-maps";
+import MarkerSelected from '../../img/marker-selected.svg';
 
 export class MarkerComponent extends Component {
   constructor(props) {
@@ -26,23 +27,37 @@ export class MarkerComponent extends Component {
     });
   }
 
+  isThisMarkerSelected = () => {
+    return this.props.clickedPlace &&
+          this.props.clickedPlace.id === this.props.place.id
+  }
+
+  onInfoWindowClosed = () => {
+    return this.props.onMarkerClick(null)
+  } 
+
   render() {
     return (
       <Marker
+        icon={
+          this.isThisMarkerSelected()
+            ? { url: MarkerSelected }
+            : undefined
+        }
         onClick={event => this.props.onMarkerClick(this.props.place)}
         position={{
           lat: this.props.place.location.lat,
           lng: this.props.place.location.lng
         }}
       >
-        {this.props.clickedPlace &&
-          this.props.clickedPlace.id === this.props.place.id && (
-            <InfoWindow>
+        { this.isThisMarkerSelected() && 
+          (<InfoWindow
+            onCloseClick={() => this.onInfoWindowClosed()}>
               <div>
                 <h1>{this.props.place.name}</h1>
                 <div className="photo__container">
                   {this.state.photos.map((photo, i) => {
-                    return <img key={i} src={photo} alt=""/>;
+                    return <img key={i} src={photo} alt={this.props.place.name}/>;
                   })}
                 </div>
               </div>

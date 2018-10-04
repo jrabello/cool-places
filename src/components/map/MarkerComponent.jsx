@@ -7,7 +7,6 @@ export class MarkerComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isAnyError: false,
       photos: []
     };
   }
@@ -17,10 +16,8 @@ export class MarkerComponent extends Component {
       this.props.place.foursquare.id
     );
 
-    if (!(venue && venue.photos && venue.photos.groups)) { 
-      this.setState({
-        isAnyError: true
-      });
+    if (!(venue && venue.photos && venue.photos.groups)) {
+      this.props.onError()
       return;
     }
 
@@ -40,14 +37,11 @@ export class MarkerComponent extends Component {
   }
 
   onInfoWindowClosed = () => {
-    this.setState({
-      isAnyError: false
-    })
     return this.props.onMarkerClick(null)
-  } 
+  }
 
   canShowInfoWindow = () => {
-    return this.isThisMarkerSelected() && !this.state.isAnyError
+    return this.isThisMarkerSelected()
   }
 
   render() {
@@ -77,7 +71,7 @@ export class MarkerComponent extends Component {
                 </div>
               </InfoWindow>
             )
-          : <div>Error while trying to get data from our server!</div>}
+          : null}
       </Marker>
     );
   }

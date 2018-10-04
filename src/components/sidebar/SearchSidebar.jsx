@@ -39,6 +39,8 @@ export class SearchSidebar extends Component {
                          <svg width="24" height="24" viewBox="0 0 24 24"><path d="M10 17l5-5-5-5v10z"/><path fill="none" d="M0 24V0h24v24H0z"/></svg>
                         </i>
                     </button>
+
+                    {/* search input */}
                     <label htmlFor="searchInput">City Name:</label>
                     <input 
                         id="searchInput"
@@ -48,15 +50,18 @@ export class SearchSidebar extends Component {
 
                     {/* filter icon */}
                     <i className="filter">
-                        <svg aria-hidden="true" 
+                        <svg 
+                            role="img" 
+                            aria-hidden="true" 
                             data-prefix="fas" 
                             data-icon="filter" 
-                            role="img" 
                             viewBox="0 0 512 512">
                                 <path fill="currentColor" d="M487.976 0H24.028C2.71 0-8.047 25.866 7.058 40.971L192 225.941V432c0 7.831 3.821 15.17 10.237 19.662l80 55.98C298.02 518.69 320 507.493 320 487.98V225.941l184.947-184.97C520.021 25.896 509.338 0 487.976 0z"></path>
                         </svg>
                     </i>
                 </div>
+
+                {/* cities names */}
                 <ul>
                 {
                     this.props.places

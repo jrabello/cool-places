@@ -3,12 +3,17 @@ import "./App.css";
 import { MapComponent } from "./components/map/MapComponent";
 import { constants } from "./constants";
 import { SearchSidebar } from "./components/sidebar/SearchSidebar";
+import { Modal } from "./components/modal/Modal";
 
 class App extends Component {
 
   constructor(props) {
     super(props)
     this.state = {
+      status: {
+        ok: true,
+        msg: `Error while trying to get data from our server!`
+      },
       places: [...this.getAllPlaces()],
       isSidebarVisible: false,
       clickedPlace: undefined,
@@ -50,9 +55,20 @@ class App extends Component {
     });
   }
 
+  onError = (msg) => {
+    this.setState({
+      status:{
+        ok: false
+      }
+    })
+  }
+
   render() {
     return (
-      <main className="app">
+      <main className="app" tabIndex="0">
+        <Modal 
+          msg={this.state.ok ? null : this.state.status.msg}/>
+
         <SearchSidebar
           places={this.state.places}
           isSidebarVisible={this.state.isSidebarVisible}
@@ -63,6 +79,7 @@ class App extends Component {
         <MapComponent 
           places={this.state.places}
           clickedPlace={this.state.clickedPlace}
+          onError={this.onError}
           onPlaceClicked={this.onPlaceClicked}/>
       </main>
     );

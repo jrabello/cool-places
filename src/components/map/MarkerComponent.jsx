@@ -7,6 +7,7 @@ export class MarkerComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      isAnyError: false,
       photos: []
     };
   }
@@ -15,13 +16,19 @@ export class MarkerComponent extends Component {
     const venue = await FourSquareService.getPhotos(
       this.props.place.foursquare.id
     );
-    console.log({ venue });
 
-    if (!(venue && venue.photos && venue.photos.groups)) return;
+    if (!(venue && venue.photos && venue.photos.groups)) { 
+      this.setState({
+        isAnyError: true
+      });
+      return;
+    }
 
-    const urls = venue.photos.groups.map(group =>
-      group.items.map(item => item.prefix + `150` + item.suffix)
-    );
+    const urls = venue.photos.groups
+    .map(group =>
+      group.items.map(item => item.prefix + `150` + item.suffix))
+    .filter(url => url.length)
+    
     this.setState({
       photos: urls
     });
@@ -33,14 +40,21 @@ export class MarkerComponent extends Component {
   }
 
   onInfoWindowClosed = () => {
+    this.setState({
+      isAnyError: false
+    })
     return this.props.onMarkerClick(null)
   } 
+
+  canShowInfoWindow = () => {
+    return this.isThisMarkerSelected() && !this.state.isAnyError
+  }
 
   render() {
     return (
       <Marker
         icon={
-          this.isThisMarkerSelected()
+          this.canShowInfoWindow()
             ? { url: MarkerSelected }
             : undefined
         }
@@ -50,19 +64,20 @@ export class MarkerComponent extends Component {
           lng: this.props.place.location.lng
         }}
       >
-        { this.isThisMarkerSelected() && 
-          (<InfoWindow
-            onCloseClick={() => this.onInfoWindowClosed()}>
-              <div>
-                <h1>{this.props.place.name}</h1>
-                <div className="photo__container">
-                  {this.state.photos.map((photo, i) => {
-                    return <img key={i} src={photo} alt={this.props.place.name}/>;
-                  })}
+        { this.canShowInfoWindow() 
+          ? (<InfoWindow
+              onCloseClick={() => this.onInfoWindowClosed()}>
+                <div>
+                  <h1>{this.props.place.name}</h1>
+                  <div className="photo__container">
+                    {this.state.photos.map((photo, i) => {
+                      return <img key={i} src={photo} alt={this.props.place.name}/>;
+                    })}
+                  </div>
                 </div>
-              </div>
-            </InfoWindow>
-          )}
+              </InfoWindow>
+            )
+          : <div>Error while trying to get data from our server!</div>}
       </Marker>
     );
   }

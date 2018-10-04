@@ -39,8 +39,9 @@ export class SearchSidebar extends Component {
                          <svg width="24" height="24" viewBox="0 0 24 24"><path d="M10 17l5-5-5-5v10z"/><path fill="none" d="M0 24V0h24v24H0z"/></svg>
                         </i>
                     </button>
-                    
+                    <label htmlFor="searchInput">City Name:</label>
                     <input 
+                        id="searchInput"
                         className="search--input" 
                         type="text"
                         onChange={event => this.onTypedPlaceChanged(event.target.value)}/>

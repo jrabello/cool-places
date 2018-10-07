@@ -4,7 +4,6 @@ import "./Modal.css";
 export class Modal extends Component {
 
   onWindowClosed = () => {
-    console.log(`onWindowClosed`);
     this.props.onModalClosed()
   }
 

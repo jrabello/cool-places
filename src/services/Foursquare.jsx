@@ -24,6 +24,9 @@ export class FourSquareService {
 
   static async getPhotosMock(venueId) {
     return {
+      location: {
+        formattedAddress: ["Plaine de Cayrou", "46700 PUY L'EVEQUE", "França"]
+      },
       photos: {
         groups: [
           {

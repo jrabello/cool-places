@@ -16,8 +16,13 @@ export class MarkerComponent extends Component {
       this.props.place.foursquare.id
     );
 
-    this.props.onError(`Error while trying to load Foursquare images`)
-    if (!(venue && venue.photos && venue.photos.groups)) {
+    if (!(venue 
+        && venue.photos 
+        && venue.photos.groups
+        && venue.location 
+        && venue.location.formattedAddress
+    )) {
+      this.props.onError(`Error while trying to load Foursquare images`)
       return;
     }
 
@@ -26,8 +31,12 @@ export class MarkerComponent extends Component {
         group.items.map(item => item.prefix + `150` + item.suffix))
       .filter(url => url.length)
 
+    
     this.setState({
-      photos: urls
+      addressList: venue.location.formattedAddress,
+      photos: urls.map(url => ({
+          imgSrc: url,
+      }))
     });
   }
 
@@ -65,9 +74,14 @@ export class MarkerComponent extends Component {
                   <h1>{this.props.place.name}</h1>
                   <div className="photo__container">
                     {this.state.photos.map((photo, i) => {
-                      return <img key={i} src={photo} alt={this.props.place.name}/>;
+                      return <img key={i} src={photo.imgSrc} alt={this.props.place.name}/>
                     })}
                   </div>
+                  <ul className="address__container">
+                    {this.state.addressList.map((address, i) => {
+                      return <li key={i}>{address}</li> 
+                    })}
+                  </ul>
                 </div>
               </InfoWindow>
             )

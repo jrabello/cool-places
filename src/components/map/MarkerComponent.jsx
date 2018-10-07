@@ -12,20 +12,20 @@ export class MarkerComponent extends Component {
   }
 
   async componentDidMount() {
-    const venue = await FourSquareService.getPhotos(
+    const venue = await FourSquareService.getPhotosMock(
       this.props.place.foursquare.id
     );
 
+    this.props.onError(`Error while trying to load Foursquare images`)
     if (!(venue && venue.photos && venue.photos.groups)) {
-      this.props.onError()
       return;
     }
 
     const urls = venue.photos.groups
-    .map(group =>
-      group.items.map(item => item.prefix + `150` + item.suffix))
-    .filter(url => url.length)
-    
+      .map(group =>
+        group.items.map(item => item.prefix + `150` + item.suffix))
+      .filter(url => url.length)
+
     this.setState({
       photos: urls
     });

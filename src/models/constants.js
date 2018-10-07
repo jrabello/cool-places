@@ -56,7 +56,10 @@ export const constants = {
     {
       id: 4,
       name: `Winery Pages Christophe`,
-      foursquare: {id: `4c61718212e5c928fb91214c`},
+      foursquare: {
+        id: 
+        `4c61718212e5c928fb91214c`
+      },
       location: {
         lat: 44.487294,
         lng: 1.141692
@@ -64,11 +67,13 @@ export const constants = {
     },
     {
       id: 5,
-      name: `Château du Cayrou`,
-      foursquare: {id:`5798bcfe498ea78ee3c0d836`},
+      name: `Village Camping Les Vignes`, 
+      foursquare: {
+        id: `51d3fab1498ec155251d9d35`
+      }, 
       location: {
-        lat: 44.480564,
-        lng: 1.144876
+        lat: 44.47761213,
+        lng: 1.14188409
       }
     }
   ]

@@ -7,7 +7,7 @@ import {
   withGoogleMap, 
   GoogleMap, 
 } from "react-google-maps"
-import { constants } from "../../constants";
+import { constants } from "../../models/constants";
 import { MarkerComponent } from "./MarkerComponent";
 
 const MyMapComponent = compose(

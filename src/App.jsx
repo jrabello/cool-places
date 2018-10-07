@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import { MapComponent } from "./components/map/MapComponent";
-import { constants } from "./constants";
+import { constants } from "./models/constants";
 import { SearchSidebar } from "./components/sidebar/SearchSidebar";
 import { Modal } from "./components/modal/Modal";
 
@@ -12,7 +12,7 @@ class App extends Component {
     this.state = {
       status: {
         ok: true,
-        msg: `Error while trying to get data from our server!`
+        msg: ``
       },
       places: [...this.getAllPlaces()],
       isSidebarVisible: false,
@@ -57,8 +57,18 @@ class App extends Component {
 
   onError = (msg) => {
     this.setState({
-      status:{
-        ok: false
+      status: {
+        msg,
+        ok: false,
+      }
+    })
+  }
+
+  onModalClosed = () => {
+    this.setState({
+      status: {
+        msg: ``,
+        ok: true,
       }
     })
   }
@@ -67,7 +77,8 @@ class App extends Component {
     return (
       <main className="app" tabIndex="0">
         <Modal 
-          msg={this.state.ok ? null : this.state.status.msg}/>
+          msg={this.state.status.msg}
+          onModalClosed={this.onModalClosed}/>
 
         <SearchSidebar
           places={this.state.places}

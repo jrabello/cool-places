@@ -19,6 +19,12 @@ class App extends Component {
       clickedPlace: undefined,
     };
   }
+  
+  componentDidMount() {
+    window.gm_authFailure = () => console.log(`error!!`);
+     
+    //{       this.setState({ mapError: true });     };
+  }
 
   getAllPlaces = () => constants.places;
 

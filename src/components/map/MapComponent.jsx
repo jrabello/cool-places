@@ -20,16 +20,14 @@ const MyMapComponent = compose(
     mapElement: <div style={{ height: `100vh` }} />,
   }),
   withScriptjs,
-  withGoogleMap
+  withGoogleMap,
 )((props) =>
-
   <GoogleMap
     defaultZoom={14}
     defaultCenter={{ 
       lat: constants.places[0].location.lat, 
       lng: constants.places[0].location.lng
-    }}
-  >
+    }}>
     {
       props.isMarkerShown
       && props.places
@@ -57,6 +55,10 @@ export class MapComponent extends React.PureComponent {
     this.delayedShowMarker()
   }
 
+  componentDidCatch(){
+    this.props.onError(`Error while trying to load Google Maps!!!`)
+  }
+
   delayedShowMarker = () => {
     setTimeout(() => {
       this.setState({ isMarkerShown: true })
@@ -70,12 +72,12 @@ export class MapComponent extends React.PureComponent {
   render() {
     return (
       <MyMapComponent
-        places={this.props.places}
-        onError={this.props.onError}
-        clickedPlace={this.props.clickedPlace}
-        isMarkerShown={this.state.isMarkerShown}
-        onMarkerClick={this.onMarkerClick}
-      />
+          places={this.props.places}
+          onError={this.props.onError}
+          clickedPlace={this.props.clickedPlace}
+          isMarkerShown={this.state.isMarkerShown}
+          onMarkerClick={this.onMarkerClick}
+        />
     )
   }
 }

@@ -32,6 +32,7 @@ export class SearchSidebar extends Component {
                 <div className="search">
                     {/* expand sidebar */}
                     <button 
+                        aria-label={this.props.isSidebarVisible ? `close` : `open`}
                         className={"sidebar__btn--expand " + 
                             (this.props.isSidebarVisible ? `hidden` : ``)} 
                         onClick={event => this.toggleVisibility()}>
@@ -63,18 +64,16 @@ export class SearchSidebar extends Component {
 
                 {/* cities names */}
                 <ul>
-                {
-                    this.props.places
-                    .map((place, i) => {
+                    {this.props.places.map((place, i) => {
                         return (
                         <li className="search--result"
+                            tabIndex="0"
+                            role="button"
                             key={i}
                             onClick={event => this.onPlaceClicked(place)}>
                             { place.name }
                         </li>
-                        )
-                    })
-                }
+                    )})}
                 </ul>
             </div>
        </aside>

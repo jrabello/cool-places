@@ -30,7 +30,6 @@ export class MarkerComponent extends Component {
       .map(group =>
         group.items.map(item => item.prefix + `150` + item.suffix))
       .filter(url => url.length)
-
     
     this.setState({
       addressList: venue.location.formattedAddress,

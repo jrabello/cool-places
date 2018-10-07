@@ -13,7 +13,6 @@ export class FourSquareService {
         .then(res => res.json())
         .then(data => data.response.venue);
 
-      console.log({ response });
       return response;
     } catch (error) {
       console.error(

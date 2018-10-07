@@ -55,7 +55,7 @@ export class MapComponent extends React.PureComponent {
     this.delayedShowMarker()
   }
 
-  componentDidCatch(){
+  componentDidCatch() {
     this.props.onError(`Error while trying to load Google Maps!!!`)
   }
 

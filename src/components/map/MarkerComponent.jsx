@@ -12,7 +12,7 @@ export class MarkerComponent extends Component {
   }
 
   async componentDidMount() {
-    const venue = await FourSquareService.getPhotosMock(
+    const venue = await FourSquareService.getPhotos(
       this.props.place.foursquare.id
     );
 
